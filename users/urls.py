@@ -2,6 +2,9 @@ from django.urls import path
 from users import api, views
 
 urlpatterns = [
+    path('send_code/', api.SendCode.as_view()),
+    path('resend_code/', api.SendCode.as_view()),
+    path('verify_code/', api.VerifyCode.as_view()),
     path('register/', api.RegisterAPIView.as_view()),
     # path('login', api.LoginAPIView.as_view()),
     # path('user', api.UserAPIView.as_view()),

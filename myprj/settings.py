@@ -55,6 +55,8 @@ THIRD_PARTY_APPS = (
     'oauth2_provider',
     'corsheaders',
     'drf_yasg'
+    # 'django_celery_results',
+    # 'django_celery_beat'
 )
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
@@ -190,3 +192,26 @@ REST_FRAMEWORK = {
     ),
     'EXCEPTION_HANDLER': 'users.exceptions.status_code_handler'
 }
+
+"""
+# redis Cache settings
+# Cache time to live is 5 minutes
+CACHE_TTL = 60 * 1500
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+        },
+        "KEY_PREFIX": "example"
+    }
+}
+"""
+
+# local_settings
+try:
+    from .local_settings import *
+except ImportError:
+    pass

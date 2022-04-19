@@ -41,8 +41,8 @@ class CustomUserManager(BaseUserManager):
 class User(AbstractUser):
     username = None
     email = models.EmailField(_('email address'), unique=True)
-    is_verified = models.BooleanField(default=False)
-    otp = models.CharField(max_length=6, null=True, blank=True)
+    is_accepted = models.BooleanField(default=False)
+    phone = models.CharField(max_length=12, null=True, blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
