@@ -45,7 +45,6 @@ DJANGO_APPS = (
 
 LOCAL_APPS = (
     # 'core.apps.CoreConfig',
-    # 'users.apps.UsersConfig',
     'users',
 )
 
@@ -164,11 +163,11 @@ CORS_ALLOW_METHODS = [
 ]
 
 #rest frame work config
-# AUTHENTICATION_BACKENDS = (
-#     'oauth2_provider.backends.OAuth2Backend',
-#     'django.contrib.auth.backends.ModelBackend',
-# )
-AUTHENTICATION_BACKENDS = ['users.auth_backends.EmailBackend']
+AUTHENTICATION_BACKENDS = (
+    'oauth2_provider.backends.OAuth2Backend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+# AUTHENTICATION_BACKENDS = ['myprj.auth_backends.EmailBackend']
 
 OAUTH2_PROVIDER = {
     # this is the list of available scopes
@@ -190,25 +189,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
         # 'rest_framework.permissions.AllowAny',
     ),
-    'EXCEPTION_HANDLER': 'users.exceptions.status_code_handler'
+    'EXCEPTION_HANDLER': 'myprj.exceptions.status_code_handler'
 }
 
-"""
-# redis Cache settings
-# Cache time to live is 5 minutes
-CACHE_TTL = 60 * 1500
-
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient"
-        },
-        "KEY_PREFIX": "example"
-    }
-}
-"""
 
 # local_settings
 try:

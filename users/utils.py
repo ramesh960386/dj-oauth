@@ -32,3 +32,6 @@ class Red:
         # cahe_data = cahe_data.decode("utf-8")
         # cahe_data = json.loads(cahe_data)
         return cahe_data
+
+def responsedata(status, message, code, data={}):
+    return {"success": status, "data": data, "code": code, "message": message}

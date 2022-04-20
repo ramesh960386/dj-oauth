@@ -19,7 +19,7 @@ from rest_framework import permissions, authentication
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from users import api
-from oauth2_provider.views import TokenView
+from oauth2_provider import views as o2v
 # from oauth2_provider.urls
 
 schema_view = get_schema_view(
@@ -38,8 +38,9 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
-    # path('auth/token/', TokenView.as_view(), name='token'),
+    path('login_token/', o2v.TokenView.as_view(), name='login-token'),
+    path('refresh_token/', o2v.TokenView.as_view(), name='refresh-token'),
+    path('logout_token/', o2v.RevokeTokenView.as_view(), name='logout-token'),
     path('api/', include('users.urls')),
 
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
